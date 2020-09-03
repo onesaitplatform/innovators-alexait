@@ -1,33 +1,31 @@
 package com.minsait.innovators.alexa.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonPropertyOrder({ "date", "members", "canceled", "building", "room" })
+@JsonPropertyOrder({ "deviceId", "userId", "email", "fullName" })
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Meetings {
+public class AlexaDevice {
 
-	@JsonProperty("date")
-	public String date;
-	@JsonProperty("members")
-	public List<String> members = null;
-	@JsonProperty("canceled")
-	public Boolean canceled;
-	@JsonProperty("building")
-	public String building;
-	@JsonProperty("room")
-	public String room;
+	@JsonProperty("deviceId")
+	public String deviceId;
+	@JsonProperty("userId")
+	public String userId;
+	@JsonProperty("email")
+	public String email;
+	@JsonProperty("fullName")
+	public String fullName;
 
 }
