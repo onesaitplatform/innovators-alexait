@@ -54,17 +54,23 @@ public class DeviceManagementService {
 		}
 	}
 
-	public void register(String deviceId, String username, String fullName, String email) {
-		final AlexaDevice device = AlexaDevice.builder().deviceId(deviceId).userId(username).email(email)
-				.fullName(fullName).build();
-
-		try {
-			final RequestBody body = RequestBody.create(MediaType.parse("application/json"),
-					mapper.writeValueAsString(device));
-			final Request request = new Request.Builder().url(API_BASE_ENDPOINT).post(body).build();
-			client.newCall(request).execute();
-		} catch (final IOException e) {
-			log.error("Could not register device");
+	public AlexaDevice register(String deviceId, String username, String fullName, String email) {
+		final AlexaDevice d = getDevice(deviceId);
+		if (d == null) {
+			final AlexaDevice device = AlexaDevice.builder().deviceId(deviceId).userId(username).email(email)
+					.fullName(fullName).build();
+			try {
+				final RequestBody body = RequestBody.create(MediaType.parse("application/json"),
+						mapper.writeValueAsString(device));
+				final Request request = new Request.Builder().url(API_BASE_ENDPOINT).post(body).build();
+				client.newCall(request).execute();
+				return device;
+			} catch (final IOException e) {
+				log.error("Could not register device");
+				return null;
+			}
+		} else {
+			return d;
 		}
 
 	}

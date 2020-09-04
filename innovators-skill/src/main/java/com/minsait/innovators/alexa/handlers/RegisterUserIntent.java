@@ -20,6 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RegisterUserIntent implements RequestHandler {
 
+	private static final String MAIL_DOMAIN = "@minsait.com";
+
 	@Override
 	public boolean canHandle(HandlerInput input) {
 		return input.matches(Predicates.intentName("RegisterUserIntent"));
@@ -34,8 +36,9 @@ public class RegisterUserIntent implements RequestHandler {
 		if (!slots.isEmpty()) {
 			final Slot email = slots.get(EMAIL_SLOT);
 			if (email != null) {
-				log.info("El correo es {}", email.getValue());
-				final IndraUsers user = IndraUsersService.getInstance().getUser(email.getValue());
+				final String mail = email.getValue() + MAIL_DOMAIN;
+				log.info("El correo es {}", mail);
+				final IndraUsers user = IndraUsersService.getInstance().getUser(mail);
 				if (user == null) {
 					speechText = "Lo siento, ese email no se encuentra registrado dentro de la organización, prueba con otro correo";
 				} else {
@@ -45,7 +48,7 @@ public class RegisterUserIntent implements RequestHandler {
 						deviceId = "DEVICE_DEMO";
 					}
 					DeviceManagementService.getInstance().register(deviceId, String.valueOf(user.getCodEmpleado()),
-							user.getEmpleado(), email.getValue());
+							user.getEmpleado(), mail);
 					speechText = user.getEmpleado() + ", su correo se ha registrado satisfactoriamente";
 				}
 
