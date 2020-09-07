@@ -18,7 +18,8 @@ import com.minsait.innovators.alexa.service.IndraUsersService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class RegisterUserIntent implements RequestHandler {
+@Deprecated
+public class RegisterUserIntentHandler implements RequestHandler {
 
 	private static final String MAIL_DOMAIN = "@minsait.com";
 

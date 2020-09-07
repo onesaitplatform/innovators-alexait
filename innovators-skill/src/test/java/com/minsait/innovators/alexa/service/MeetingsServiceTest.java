@@ -17,7 +17,8 @@ public class MeetingsServiceTest {
 
 	@Test
 	public void onFetchMeetings_thenAllMeetingsAreFetched() {
-		final List<Meetings> meetings = MeetingsService.getInstance().fetchMeetings();
+		final List<Meetings> meetings = MeetingsService.getInstance()
+				.fetchMeetings("Francisco Javier Gómez-Cornejo Gil");
 		assertTrue(!meetings.isEmpty());
 	}
 
@@ -36,6 +37,13 @@ public class MeetingsServiceTest {
 	public void onFetchIndraUser_thenIndraUserIsRetrieved() {
 		final IndraUsers user = IndraUsersService.getInstance().getUser("fjgcornejo@minsait.com");
 		assertNotNull(user);
+	}
+
+	@Test
+	public void onProvidedUserFullName_thenNextMeetingIsRetrieved() {
+		final String name = "Francisco Javier Gómez-Cornejo Gil";
+		final Meetings meeting = MeetingsService.getInstance().fetchNextMeeting(name);
+		assertNotNull(meeting);
 	}
 
 }

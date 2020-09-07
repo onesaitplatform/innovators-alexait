@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonPropertyOrder({ "date", "members", "canceled", "building", "room" })
+@JsonPropertyOrder({ "_id", "date", "members", "canceled", "building", "room" })
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +21,8 @@ public class Meetings {
 
 	@JsonProperty("date")
 	public String date;
+	@JsonProperty("_id")
+	public String id;
 	@JsonProperty("members")
 	public List<String> members = null;
 	@JsonProperty("canceled")

@@ -1,6 +1,7 @@
 package com.minsait.innovators.alexa.commons;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.minsait.innovators.alexa.model.AlexaDevice;
 
 import lombok.Getter;
 import okhttp3.OkHttpClient;
@@ -12,7 +13,10 @@ public class CommonsInterface {
 	public static final String X_OP_API_KEY = "X-OP-APIKey";
 	public static final String USER_ATT = "USER_ID";
 	public static final String EMAIL_SLOT = "userEmail";
-
+	public static final String DATE_SLOT = "dateIn";
+	public static final String NO_MEETINGS = "No tiene ninguna reunión.";
+	public static final String NO_USER = "Perdona, no se quien eres, concede permisos a la aplicación para poder seguir utilizándola.";
+	public static final String CARD_TITLE = "Innovators";
 	public static final ObjectMapper mapper = new ObjectMapper();
 
 	@Getter
@@ -29,6 +33,14 @@ public class CommonsInterface {
 			return chain.proceed(newRequest);
 		});
 		return httpClient.build();
+	}
+
+	public static AlexaDevice getCurrentUser(Object attr) {
+		if (attr instanceof AlexaDevice) {
+			return (AlexaDevice) attr;
+		} else {
+			return mapper.convertValue(attr, AlexaDevice.class);
+		}
 	}
 
 }

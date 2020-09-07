@@ -3,6 +3,9 @@ package com.minsait.innovators.alexa.service;
 import static com.minsait.innovators.alexa.commons.CommonsInterface.mapper;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,17 +25,49 @@ public class MeetingsService {
 
 	static MeetingsService meetingsService;
 
-	public List<Meetings> fetchMeetings() {
-		final Request request = new Request.Builder().url(API_BASE_ENDPOINT).get().build();
+	public List<Meetings> fetchMeetings(String user) {
+
 		try {
+			final String userEncoded = getEncodedUser(user);
+			final Request request = new Request.Builder().url(API_BASE_ENDPOINT + "/user/" + userEncoded).get().build();
 			final Response response = client.newCall(request).execute();
 			return mapper.readValue(response.body().string(), new TypeReference<List<Meetings>>() {
 			});
-
 		} catch (final IOException e) {
+			e.printStackTrace();
 			return new ArrayList<>();
 		}
 
+	}
+
+	public Meetings fetchNextMeeting(String user) {
+
+		try {
+			final String userEncoded = getEncodedUser(user);
+			final Request request = new Request.Builder().url(API_BASE_ENDPOINT + "/next/" + userEncoded).get().build();
+			final Response response = client.newCall(request).execute();
+			return mapper.readValue(response.body().string(), Meetings.class);
+
+		} catch (final IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public boolean cancelMeeting(String id) {
+
+		try {
+
+			final Request request = new Request.Builder().url(API_BASE_ENDPOINT + "/cancel/" + id).get().build();
+			final Response response = client.newCall(request).execute();
+			if (response.isSuccessful()) {
+				return true;
+			}
+
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public static synchronized MeetingsService getInstance() {
@@ -40,5 +75,17 @@ public class MeetingsService {
 			meetingsService = new MeetingsService();
 		}
 		return meetingsService;
+	}
+
+	private String getEncodedUser(String user) {
+		String userEncoded;
+		try {
+			userEncoded = URLEncoder.encode(user, StandardCharsets.UTF_8.name());
+			userEncoded = userEncoded.replace("+", "%20");
+			return userEncoded;
+		} catch (final UnsupportedEncodingException e) {
+			return user;
+		}
+
 	}
 }

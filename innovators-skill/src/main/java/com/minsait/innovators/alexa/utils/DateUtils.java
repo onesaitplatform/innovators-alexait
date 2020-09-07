@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 
+import com.minsait.innovators.alexa.model.Meetings;
+
 import lombok.Getter;
 
 public class DateUtils {
@@ -30,8 +32,16 @@ public class DateUtils {
 	}
 
 	public static String parseISODateToSpeech(DateTime date) {
-		return "El " + date.getDayOfMonth() + " de " + DateUtils.getMonths().get(date.getMonthOfYear()) + " a las "
-				+ date.getHourOfDay() + " horas y " + date.getMinuteOfHour() + " minutos. ";
+		return " El " + date.getDayOfMonth() + " de " + DateUtils.getMonths().get(date.getMonthOfYear()) + " a las "
+				+ date.getHourOfDay() + ":" + date.getMinuteOfHour() + " . ";
+	}
+
+	public static String getMeetingLocation(Meetings meeting) {
+		if (meeting.getBuilding() == null || "".equals(meeting.getBuilding())) {
+			return meeting.getRoom();
+		} else {
+			return meeting.getBuilding() + ", sala " + meeting.getRoom();
+		}
 	}
 
 }
