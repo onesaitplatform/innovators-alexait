@@ -12,6 +12,7 @@ import com.minsait.innovators.alexa.handlers.HelpIntentHandler;
 import com.minsait.innovators.alexa.handlers.LaunchRequestHandler;
 import com.minsait.innovators.alexa.handlers.MeetingsIntentHandler;
 import com.minsait.innovators.alexa.handlers.NextMeetingIntentHandler;
+import com.minsait.innovators.alexa.handlers.PCRIntentHandler;
 import com.minsait.innovators.alexa.handlers.SessionEndedRequestHandler;
 import com.minsait.innovators.alexa.interceptors.CurrentUserInterceptor;
 
@@ -21,7 +22,8 @@ public class InnovatorsStreamHandler extends SkillStreamHandler {
 		return Skills.standard()
 				.addRequestHandlers(Arrays.asList(new FallbackIntentHandler(), new CancelandStopIntentHandler(),
 						new HelpIntentHandler(), new LaunchRequestHandler(), new SessionEndedRequestHandler(),
-						new MeetingsIntentHandler(), new NextMeetingIntentHandler(), new CancelMeetingIntentHandler()))
+						new MeetingsIntentHandler(), new NextMeetingIntentHandler(), new CancelMeetingIntentHandler(),
+						new PCRIntentHandler()))
 				.addRequestInterceptor(new CurrentUserInterceptor()).build();
 
 	}

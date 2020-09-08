@@ -14,9 +14,12 @@ public class CommonsInterface {
 	public static final String USER_ATT = "USER_ID";
 	public static final String EMAIL_SLOT = "userEmail";
 	public static final String DATE_SLOT = "dateIn";
-	public static final String NO_MEETINGS = "No tiene ninguna reunión.";
+	public static final String NO_MEETINGS = "No tienes ninguna reunión.";
 	public static final String NO_USER = "Perdona, no se quien eres, concede permisos a la aplicación para poder seguir utilizándola.";
 	public static final String CARD_TITLE = "Innovators";
+	public static final String PCR_PRIVACY = "Por motivos de privacidad, no me es posible revelar quién ha dado positivo a la prueba de la PCR";
+	public static final String PCR_TRUE = "Alguno de los miembros de una de tus reuniones ha dado positivo a la PCR recientemente, te recomiendo que te hagas una PCR para descartar un posible contagio";
+	public static final String PCR_FALSE = "No tienes de qué preocuparte, ningún miembro de tus pasadas reuniones ha dado positivo a la PCR";
 	public static final ObjectMapper mapper = new ObjectMapper();
 
 	@Getter
