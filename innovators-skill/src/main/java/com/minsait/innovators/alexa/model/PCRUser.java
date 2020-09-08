@@ -21,6 +21,6 @@ public class PCRUser {
 
 	@JsonProperty("user")
 	private String user;
-	@JsonProperty("pcrs")
+	@JsonProperty("pcr")
 	private boolean pcr;
 }

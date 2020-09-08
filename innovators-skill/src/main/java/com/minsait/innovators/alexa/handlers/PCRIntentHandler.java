@@ -33,7 +33,7 @@ public class PCRIntentHandler implements RequestHandler {
 			final AlexaDevice user = CommonsInterface
 					.getCurrentUser(input.getAttributesManager().getSessionAttributes().get(USER_ATT));
 			final boolean isAtRisk = PCRService.getInstance().isUserAtRisk(user.getFullName());
-			return input.getResponseBuilder().withSpeech(isAtRisk ? PCR_TRUE : PCR_FALSE).withShouldEndSession(true)
+			return input.getResponseBuilder().withSpeech(isAtRisk ? PCR_TRUE : PCR_FALSE).withShouldEndSession(false)
 					.withSimpleCard(CommonsInterface.CARD_TITLE, isAtRisk ? PCR_TRUE : PCR_FALSE).build();
 
 		}

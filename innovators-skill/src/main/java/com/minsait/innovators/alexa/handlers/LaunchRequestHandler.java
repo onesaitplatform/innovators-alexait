@@ -25,7 +25,7 @@ public class LaunchRequestHandler implements RequestHandler {
 		if (input.getAttributesManager().getSessionAttributes().get(USER_ATT) != null) {
 			final AlexaDevice device = CommonsInterface
 					.getCurrentUser(input.getAttributesManager().getSessionAttributes().get(USER_ATT));
-			speechText = "Bienvenido a la skill de innovators " + device.getFullName()
+			speechText = "Bienvenido a la skill de innovators, " + device.getFullName()
 					+ " , puedes empezar pidiendo ayuda.";
 		} else {
 			speechText = "Bienvenido a la skill de innovators. Debe vincular su cuenta de amazon para empezar.";
