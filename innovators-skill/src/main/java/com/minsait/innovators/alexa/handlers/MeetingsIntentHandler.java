@@ -42,6 +42,7 @@ public class MeetingsIntentHandler implements RequestHandler {
 			final DateTime date = new DateTime(m.getDate());
 			builder.append(DateUtils.parseISODateToSpeech(date));
 			builder.append("Será en " + DateUtils.getMeetingLocation(m) + ".");
+			builder.append(" <break time= \"2s\"/> ");
 		});
 		return input.getResponseBuilder().withSpeech(builder.toString())
 				.withSimpleCard(CommonsInterface.CARD_TITLE, builder.toString()).withShouldEndSession(false).build();

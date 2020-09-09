@@ -3,9 +3,6 @@ package com.minsait.innovators.alexa.service;
 import static com.minsait.innovators.alexa.commons.CommonsInterface.mapper;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class MeetingsService {
 	public List<Meetings> fetchMeetings(String user) {
 
 		try {
-			final String userEncoded = getEncodedUser(user);
+			final String userEncoded = CommonsInterface.getEncodedUser(user);
 			final Request request = new Request.Builder().url(API_BASE_ENDPOINT + "/user/" + userEncoded).get().build();
 			final Response response = client.newCall(request).execute();
 			return mapper.readValue(response.body().string(), new TypeReference<List<Meetings>>() {
@@ -43,7 +40,7 @@ public class MeetingsService {
 	public Meetings fetchNextMeeting(String user) {
 
 		try {
-			final String userEncoded = getEncodedUser(user);
+			final String userEncoded = CommonsInterface.getEncodedUser(user);
 			final Request request = new Request.Builder().url(API_BASE_ENDPOINT + "/next/" + userEncoded).get().build();
 			final Response response = client.newCall(request).execute();
 			return mapper.readValue(response.body().string(), Meetings.class);
@@ -77,15 +74,4 @@ public class MeetingsService {
 		return meetingsService;
 	}
 
-	private String getEncodedUser(String user) {
-		String userEncoded;
-		try {
-			userEncoded = URLEncoder.encode(user, StandardCharsets.UTF_8.name());
-			userEncoded = userEncoded.replace("+", "%20");
-			return userEncoded;
-		} catch (final UnsupportedEncodingException e) {
-			return user;
-		}
-
-	}
 }

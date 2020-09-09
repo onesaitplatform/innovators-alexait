@@ -1,6 +1,7 @@
 package com.minsait.innovators.alexa.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
+import static com.minsait.innovators.alexa.commons.CommonsInterface.CARD_TITLE;
 
 import java.util.Optional;
 
@@ -12,13 +13,14 @@ public class CancelandStopIntentHandler implements RequestHandler {
 
 	@Override
 	public boolean canHandle(HandlerInput input) {
-		return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));
+		return input.matches(intentName("AMAZON.StopIntent")
+				.or(intentName("AMAZON.CancelIntent").or(intentName("AMAZON.NoIntent"))));
 	}
 
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
 		return input.getResponseBuilder().withSpeech("Si necesitas cualquier cosa aquí estaré!")
-				.withSimpleCard("HelloWorld", "Si necesitas cualquier cosa aquí estaré!").withShouldEndSession(true)
+				.withSimpleCard(CARD_TITLE, "Si necesitas cualquier cosa aquí estaré!").withShouldEndSession(true)
 				.build();
 	}
 

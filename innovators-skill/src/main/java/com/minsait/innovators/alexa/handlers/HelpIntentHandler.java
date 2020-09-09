@@ -18,7 +18,7 @@ public class HelpIntentHandler implements RequestHandler {
 
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
-		final String speechText = "Puedes preguntarme por nuevas noticias de la empresa, información sobre el covid, próximas reuniones e incluso mandar mensajes";
+		final String speechText = "Puedes preguntarme por nuevas noticias de la empresa, próximas reuniones, gestionar tareas, e incluso si ha habido algún infectado por covid en tu equipo";
 		final String repromptText = "Puedes empezar diciendo, cuales son las últimas noticias o cual es mi próxima reunión";
 		return input.getResponseBuilder().withSimpleCard(CommonsInterface.CARD_TITLE, speechText).withSpeech(speechText)
 				.withReprompt(repromptText).withShouldEndSession(false).build();
