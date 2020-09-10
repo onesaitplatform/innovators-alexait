@@ -24,8 +24,11 @@ public class CommonsInterface {
 	public static final String NEWS_ATT = "NEWS";
 	public static final String EMAIL_SLOT = "userEmail";
 	public static final String DATE_SLOT = "dateIn";
+	public static final String VAR_IN = "varIn";
+	public static final String CREATE_TASK_NEXT_SLOT = "nextTaskSlot";
 	public static final String TASK_TITLE_SLOT = "taskTitle";
 	public static final String TASK_CHANGE_STATE_SLOT = "taskState";
+	public static final String TASK_CHANGE_ASSIGNED_SLOT = "taskAssigned";
 	public static final String NO_MEETINGS = "No tienes ninguna reunión.";
 	public static final String NO_TASK_FOUND = "No he encontrado la tarea que me has indicado. Prueba otra vez.";
 	public static final String NO_TASK_STATE_CHANGE_SLOTS = "Para cambiar una tarea de estado, indica qué tarea es mediante su título o fecha programada, y el estado al que deseas cambiarla.";

@@ -30,7 +30,7 @@ public class LaunchRequestHandler implements RequestHandler {
 		} else {
 			speechText = "Bienvenido a la skill de innovators. Debe vincular su cuenta de amazon para empezar.";
 			return input.getResponseBuilder().withSpeech(speechText).withLinkAccountCard().withReprompt(speechText)
-					.build();
+					.withShouldEndSession(false).build();
 		}
 		return input.getResponseBuilder().withSpeech(speechText).withSimpleCard(CommonsInterface.CARD_TITLE, speechText)
 				.withReprompt(speechText).withShouldEndSession(false).build();

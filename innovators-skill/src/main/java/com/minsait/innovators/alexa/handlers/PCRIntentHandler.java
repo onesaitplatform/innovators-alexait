@@ -27,7 +27,7 @@ public class PCRIntentHandler implements RequestHandler {
 	public Optional<Response> handle(HandlerInput input) {
 		if (input.getAttributesManager().getSessionAttributes().get(USER_ATT) != null) {
 			if (((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent().getName().equals("WhoIsAtRisk")) {
-				return input.getResponseBuilder().withSpeech(PCR_PRIVACY).withShouldEndSession(true)
+				return input.getResponseBuilder().withSpeech(PCR_PRIVACY).withShouldEndSession(false)
 						.withSimpleCard(CommonsInterface.CARD_TITLE, PCR_PRIVACY).build();
 			}
 			final AlexaDevice user = CommonsInterface

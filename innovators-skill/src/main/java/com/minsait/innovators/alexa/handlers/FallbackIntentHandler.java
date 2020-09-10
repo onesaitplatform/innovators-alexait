@@ -19,6 +19,6 @@ public class FallbackIntentHandler implements RequestHandler {
 	public Optional<Response> handle(HandlerInput input) {
 		final String speechText = "Lo siento, no te he entendido, ¡prueba pidiendo ayuda!";
 		return input.getResponseBuilder().withSpeech(speechText).withSimpleCard(CommonsInterface.CARD_TITLE, speechText)
-				.withReprompt(speechText).build();
+				.withReprompt(speechText).withShouldEndSession(false).build();
 	}
 }

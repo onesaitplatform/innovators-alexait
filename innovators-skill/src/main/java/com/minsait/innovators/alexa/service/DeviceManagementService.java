@@ -5,6 +5,7 @@ import static com.minsait.innovators.alexa.commons.CommonsInterface.mapper;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -12,6 +13,10 @@ import com.minsait.innovators.alexa.commons.CommonsInterface;
 import com.minsait.innovators.alexa.model.AlexaDevice;
 
 import lombok.extern.slf4j.Slf4j;
+import net.ricecode.similarity.DiceCoefficientStrategy;
+import net.ricecode.similarity.SimilarityStrategy;
+import net.ricecode.similarity.StringSimilarityService;
+import net.ricecode.similarity.StringSimilarityServiceImpl;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -52,6 +57,38 @@ public class DeviceManagementService {
 		} catch (final IOException e) {
 			return null;
 		}
+	}
+
+	public List<AlexaDevice> getDevices() {
+
+		try {
+			final Request request = new Request.Builder().url(API_BASE_ENDPOINT).get().build();
+			final Response response = client.newCall(request).execute();
+			return mapper.readValue(response.body().string(), new TypeReference<List<AlexaDevice>>() {
+			});
+
+		} catch (final IOException e) {
+			return new ArrayList<>();
+		}
+	}
+
+	public String getMostSimilarUsername(String input) {
+		final List<AlexaDevice> users = getDevices();
+		return users.stream().reduce((a, b) -> {
+			final double scorea = scoreUsername(input, a.getFullName());
+			final double scoreb = scoreUsername(input, b.getFullName());
+			if (scorea > scoreb) {
+				return a;
+			} else {
+				return b;
+			}
+		}).map(AlexaDevice::getFullName).orElse(input);
+	}
+
+	public double scoreUsername(String source, String target) {
+		final SimilarityStrategy strategy = new DiceCoefficientStrategy();
+		final StringSimilarityService service = new StringSimilarityServiceImpl(strategy);
+		return service.score(source, target);
 	}
 
 	public AlexaDevice register(String deviceId, String username, String fullName, String email) {

@@ -46,7 +46,7 @@ public class CancelMeetingIntentHandler implements RequestHandler {
 				final boolean canceled = MeetingsService.getInstance().cancelMeeting(match.getId());
 				if (canceled) {
 					speech = "Su reunión del " + d + " ha sido cancelada.";
-					return input.getResponseBuilder().withSpeech(speech).withShouldEndSession(true)
+					return input.getResponseBuilder().withSpeech(speech).withShouldEndSession(false)
 							.withSimpleCard(CommonsInterface.CARD_TITLE, speech).build();
 				}
 			} else {

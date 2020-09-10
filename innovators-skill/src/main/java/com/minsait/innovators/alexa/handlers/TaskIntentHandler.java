@@ -31,7 +31,7 @@ public class TaskIntentHandler implements RequestHandler {
 		final List<TeamTasksWrapper> tasks = TasksService.getInstance().fetchAssginedTasks(CommonsInterface
 				.getCurrentUser(input.getAttributesManager().getSessionAttributes().get(USER_ATT)).getFullName());
 		if (tasks.isEmpty()) {
-			return input.getResponseBuilder().withShouldEndSession(true).withSpeech(NO_TASKS)
+			return input.getResponseBuilder().withShouldEndSession(false).withSpeech(NO_TASKS)
 					.withSimpleCard(CommonsInterface.CARD_TITLE, NO_TASKS).build();
 		}
 		final StringBuilder builder = new StringBuilder();
@@ -39,8 +39,8 @@ public class TaskIntentHandler implements RequestHandler {
 		tasks.forEach(t -> {
 			builder.append(t.getTeamTasks().getTitle());
 			builder.append(". Programada para el " + t.getTeamTasks().getExpirationDate());
-			builder.append(". Estado actual: " + t.getTeamTasks().getState().getSpeechState());
-			builder.append("<break time=\"2s\"/>");
+			builder.append(". Estado actual: " + t.getTeamTasks().getState().getSpeechState() + ".");
+			builder.append(" <break time=\"2s\"/> ");
 		});
 		return input.getResponseBuilder().withShouldEndSession(false).withSpeech(builder.toString())
 				.withSimpleCard(CommonsInterface.CARD_TITLE, builder.toString()).build();

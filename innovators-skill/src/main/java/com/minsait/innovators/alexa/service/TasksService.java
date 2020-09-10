@@ -12,8 +12,10 @@ import com.minsait.innovators.alexa.commons.CommonsInterface;
 import com.minsait.innovators.alexa.model.TeamTasks;
 import com.minsait.innovators.alexa.model.TeamTasksWrapper;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class TasksService {
@@ -62,7 +64,7 @@ public class TasksService {
 			final String userEncoded = CommonsInterface.getEncodedUser(assigned);
 			final Request request = new Request.Builder()
 					.url(API_BASE_ENDPOINT + "/date-assigned-title/" + CommonsInterface.getEncodedUser(date) + "/"
-							+ CommonsInterface.getEncodedUser(title) + "/" + userEncoded)
+							+ CommonsInterface.getEncodedUser(title.toLowerCase()) + "/" + userEncoded)
 					.get().build();
 			final Response response = client.newCall(request).execute();
 			return mapper.readValue(response.body().string(), TeamTasksWrapper.class);
@@ -74,9 +76,8 @@ public class TasksService {
 	public TeamTasksWrapper fetchTaskByTitle(String title, String assigned) {
 		try {
 			final String userEncoded = CommonsInterface.getEncodedUser(assigned);
-			final Request request = new Request.Builder().url(
-					API_BASE_ENDPOINT + "/title-assigned/" + CommonsInterface.getEncodedUser(title) + "/" + userEncoded)
-					.get().build();
+			final Request request = new Request.Builder().url(API_BASE_ENDPOINT + "/title-assigned/"
+					+ CommonsInterface.getEncodedUser(title.toLowerCase()) + "/" + userEncoded).get().build();
 			final Response response = client.newCall(request).execute();
 			return mapper.readValue(response.body().string(), TeamTasksWrapper.class);
 		} catch (final IOException e) {
@@ -97,6 +98,18 @@ public class TasksService {
 		}
 	}
 
+	public void changeAssigned(String id, String assigned) {
+		try {
+			final String userEncoded = CommonsInterface.getEncodedUser(assigned);
+			final Request request = new Request.Builder()
+					.url(API_BASE_ENDPOINT + "/assigned-change/" + userEncoded + "/" + id).get().build();
+			client.newCall(request).execute();
+
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public TeamTasksWrapper fetchTask(Slot date, Slot title, String assigned) {
 
 		if (date.getValue() != null && title.getValue() == null) {
@@ -108,5 +121,18 @@ public class TasksService {
 		} else {
 			return null;
 		}
+	}
+
+	public void createTask(TeamTasksWrapper task) {
+
+		try {
+			final RequestBody body = RequestBody.create(MediaType.parse("application/json"),
+					mapper.writeValueAsString(task));
+			final Request request = new Request.Builder().url(API_BASE_ENDPOINT).post(body).build();
+			client.newCall(request).execute();
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }
