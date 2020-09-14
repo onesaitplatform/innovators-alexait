@@ -34,11 +34,15 @@ public class CommonsInterface {
 	public static final String NO_TASK_STATE_CHANGE_SLOTS = "Para cambiar una tarea de estado, indica qué tarea es mediante su título o fecha programada, y el estado al que deseas cambiarla.";
 	public static final String NO_USER = "Perdona, no se quien eres, concede permisos a la aplicación para poder seguir utilizándola.";
 	public static final String NO_TASKS = "No tienes ninguna tarea asignada.";
+	public static final String NO_TICKETS = "No hay tickets nuevos en el fresh desk de <lang xml:lang=\"en-GB\">one site platform </lang>.";
 	public static final String CARD_TITLE = "Innovators";
 	public static final String PCR_PRIVACY = "Por motivos de privacidad, no me es posible revelar quién ha dado positivo a la prueba de la PCR";
 	public static final String PCR_TRUE = "Alguno de los miembros de una de tus reuniones ha dado positivo a la PCR recientemente, te recomiendo que te hagas una PCR para descartar un posible contagio";
 	public static final String PCR_FALSE = "No tienes de qué preocuparte, ningún miembro de tus pasadas reuniones ha dado positivo a la PCR";
 	public static final String NO_NEWS = "No hay nuevas noticias.";
+	public static final String LAST_INTENT_ATT = "LAST_INTENT";
+	public static final String LAST_INTENT_NEWS = "LAST_INTENT_NEWS";
+	public static final String LAST_INTENT_TICKETS = "LAST_INTENT_TICKETS";
 	public static final ObjectMapper mapper = new ObjectMapper();
 
 	@Getter

@@ -1,6 +1,9 @@
 package com.minsait.innovators.alexa.utils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,6 +45,12 @@ public class DateUtils {
 		} else {
 			return meeting.getBuilding() + ", sala " + meeting.getRoom();
 		}
+	}
+
+	public static String getNowFormated() {
+		final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		final Date date = new Date();
+		return dateFormat.format(date);
 	}
 
 }

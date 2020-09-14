@@ -32,12 +32,13 @@ public class TeamTasks {
 		}
 
 		public static State fromString(String state) {
+			System.out.print("Estado in : " + state);
 			for (final State s : State.values()) {
 				if (s.speechState.equalsIgnoreCase(state)) {
 					return s;
 				}
 			}
-			return null;
+			return State.EN_CURSO;
 		}
 	}
 

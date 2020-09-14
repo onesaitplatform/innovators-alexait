@@ -57,7 +57,6 @@ public class ChangeTaskStateIntentHandler implements RequestHandler {
 			builder.append(task.getTeamTasks().getTitle());
 			if (intentRequest.getIntent().getName().equals(CHANGE_STATE_INTENT)) {
 				TasksService.getInstance().changeState(task.getId(), slots.get(TASK_CHANGE_STATE_SLOT).getValue());
-				builder.append(". Su estado actual es " + slots.get(TASK_CHANGE_STATE_SLOT).getValue());
 			} else {
 				final String username = DeviceManagementService.getInstance()
 						.getMostSimilarUsername(slots.get(TASK_CHANGE_ASSIGNED_SLOT).getValue());

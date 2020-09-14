@@ -129,9 +129,10 @@ public class TasksService {
 			final RequestBody body = RequestBody.create(MediaType.parse("application/json"),
 					mapper.writeValueAsString(task));
 			final Request request = new Request.Builder().url(API_BASE_ENDPOINT).post(body).build();
-			client.newCall(request).execute();
-		} catch (final IOException e) {
-			e.printStackTrace();
+			final Response response = client.newCall(request).execute();
+			response.body().string();
+		} catch (final Exception e) {
+			System.out.print(e.getMessage());
 		}
 
 	}

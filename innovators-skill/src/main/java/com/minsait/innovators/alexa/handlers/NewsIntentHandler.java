@@ -1,6 +1,8 @@
 package com.minsait.innovators.alexa.handlers;
 
 import static com.minsait.innovators.alexa.commons.CommonsInterface.CARD_TITLE;
+import static com.minsait.innovators.alexa.commons.CommonsInterface.LAST_INTENT_ATT;
+import static com.minsait.innovators.alexa.commons.CommonsInterface.LAST_INTENT_NEWS;
 import static com.minsait.innovators.alexa.commons.CommonsInterface.NEWS_ATT;
 import static com.minsait.innovators.alexa.commons.CommonsInterface.NO_NEWS;
 
@@ -16,11 +18,12 @@ import com.amazon.ask.request.Predicates;
 import com.minsait.innovators.alexa.commons.CommonsInterface;
 import com.minsait.innovators.alexa.model.CompanyNewsWrapper;
 import com.minsait.innovators.alexa.service.NewsService;
+import com.minsait.innovators.alexa.utils.IntentPredicates;
 
 public class NewsIntentHandler implements RequestHandler {
 	@Override
 	public boolean canHandle(HandlerInput input) {
-		return input.matches(Predicates.intentName("NewsIntent").or(Predicates.intentName("AMAZON.YesIntent")));
+		return input.matches(Predicates.intentName("NewsIntent").or(IntentPredicates.isYesForNews("AMAZON.YesIntent")));
 	}
 
 	@Override
@@ -48,14 +51,17 @@ public class NewsIntentHandler implements RequestHandler {
 		builder.append(firstNew.getCompanyNews().getDescription());
 		builder.append(". <break time=\"2s\"/>  ");
 		builder.append(firstNew.getCompanyNews().getText());
-		builder.append(". <break time=\"2s\"/>  ¿Quieres más noticias?");
+
 		news.remove(firstNew);
 		if (news.isEmpty()) {
 
 			input.getAttributesManager().getSessionAttributes().remove(NEWS_ATT);
+			input.getAttributesManager().getSessionAttributes().remove(LAST_INTENT_ATT);
 
 		} else {
+			builder.append(". <break time=\"2s\"/>  ¿Quieres más noticias?");
 			input.getAttributesManager().getSessionAttributes().put(NEWS_ATT, news);
+			input.getAttributesManager().getSessionAttributes().put(LAST_INTENT_ATT, LAST_INTENT_NEWS);
 		}
 
 		return input.getResponseBuilder().withSpeech(CommonsInterface.escapeSSMLCharacters(builder.toString()))

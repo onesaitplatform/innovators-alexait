@@ -20,9 +20,11 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.request.Predicates;
 import com.minsait.innovators.alexa.commons.CommonsInterface;
 import com.minsait.innovators.alexa.model.TeamTasks;
+import com.minsait.innovators.alexa.model.TeamTasks.State;
 import com.minsait.innovators.alexa.model.TeamTasksWrapper;
 import com.minsait.innovators.alexa.service.DeviceManagementService;
 import com.minsait.innovators.alexa.service.TasksService;
+import com.minsait.innovators.alexa.utils.DateUtils;
 
 public class CreateTaskIntentHandler implements RequestHandler {
 
@@ -66,7 +68,12 @@ public class CreateTaskIntentHandler implements RequestHandler {
 				final String assignedMatch = DeviceManagementService.getInstance().getMostSimilarUsername(assigned);
 
 				final TeamTasksWrapper task = TeamTasksWrapper.builder().teamTasks(TeamTasks.builder().title(title)
-						.assigned(Arrays.asList(assignedMatch)).creationDate(date).build()).build();
+						.assigned(Arrays.asList(assignedMatch)).description(title)
+						.creationDate(DateUtils.getNowFormated()).expirationDate(date).state(State.EN_ESPERA)
+						.creator(CommonsInterface
+								.getCurrentUser(input.getAttributesManager().getSessionAttributes().get(USER_ATT))
+								.getFullName())
+						.build()).build();
 
 				TasksService.getInstance().createTask(task);
 				final StringBuilder builder = new StringBuilder();

@@ -3,6 +3,7 @@ package com.minsait.innovators.alexa.service;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,7 +13,10 @@ import com.minsait.innovators.alexa.model.AlexaDevice;
 import com.minsait.innovators.alexa.model.CompanyNewsWrapper;
 import com.minsait.innovators.alexa.model.IndraUsers;
 import com.minsait.innovators.alexa.model.Meetings;
+import com.minsait.innovators.alexa.model.TeamTasks;
+import com.minsait.innovators.alexa.model.TeamTasks.State;
 import com.minsait.innovators.alexa.model.TeamTasksWrapper;
+import com.minsait.innovators.alexa.utils.DateUtils;
 
 import net.ricecode.similarity.DiceCoefficientStrategy;
 import net.ricecode.similarity.SimilarityStrategy;
@@ -90,5 +94,19 @@ public class MeetingsServiceTest {
 		final String result = DeviceManagementService.getInstance().getMostSimilarUsername("Javier Gómez");
 		assertTrue(target1.equals(result));
 
+	}
+
+	@Test
+	public void createTaskTest() {
+		final String title = "DEMO TEST TASK";
+		final String date = DateUtils.getNowFormated();
+		final String assigned = "Francisco Javier Gómez-Cornejo Gil";
+		final String assignedMatch = DeviceManagementService.getInstance().getMostSimilarUsername(assigned);
+
+		final TeamTasksWrapper task = TeamTasksWrapper.builder()
+				.teamTasks(TeamTasks.builder().title(title).assigned(Arrays.asList(assignedMatch)).description(title)
+						.creationDate(date).expirationDate(date).state(State.EN_ESPERA).creator(assigned).build())
+				.build();
+		TasksService.getInstance().createTask(task);
 	}
 }
