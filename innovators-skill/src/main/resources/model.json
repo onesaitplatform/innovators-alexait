@@ -1,0 +1,244 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "innovators app",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "MeetingsIntent",
+                    "slots": [],
+                    "samples": [
+                        "reuniones",
+                        "cuáles son las próximas reuniones",
+                        "dime las reuniones ",
+                        "qué reuniones tengo"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "RegisterUserIntent",
+                    "slots": [
+                        {
+                            "name": "userEmail",
+                            "type": "AMAZON.RadioChannel"
+                        }
+                    ],
+                    "samples": [
+                        "mi usuario es {userEmail}",
+                        "mi correo es {userEmail}"
+                    ]
+                },
+                {
+                    "name": "NextMeetingIntent",
+                    "slots": [],
+                    "samples": [
+                        "cuál es mi siguiente reunión",
+                        "siguiente reunión",
+                        "reunión próxima",
+                        "dime mi próxima reunión",
+                        "mi próxima reunión",
+                        "cuál es mi próxima reunión"
+                    ]
+                },
+                {
+                    "name": "CancelMeetingDateIntent",
+                    "slots": [
+                        {
+                            "name": "dateIn",
+                            "type": "AMAZON.DATE"
+                        }
+                    ],
+                    "samples": [
+                        "la del {dateIn}",
+                        "la reunión del {dateIn}",
+                        "cancela la reunión del {dateIn}",
+                        "quiero cancelar la reunión del {dateIn}"
+                    ]
+                },
+                {
+                    "name": "CancelMeetingIntent",
+                    "slots": [],
+                    "samples": [
+                        "cancela una reunión",
+                        "quiero cancelar una reunión"
+                    ]
+                },
+                {
+                    "name": "WhoIsAtRisk",
+                    "slots": [],
+                    "samples": [
+                        "quien tiene el covid",
+                        "quién tiene el coronavirus",
+                        "quién es el infectado",
+                        "quiénes son los infectados",
+                        "quién ha dado positivo a la PCR"
+                    ]
+                },
+                {
+                    "name": "AmIAtRiskIntent",
+                    "slots": [],
+                    "samples": [
+                        "he estado en contacto con algún positivo",
+                        "hay algún positivo en mi equipo",
+                        "ha habido algún positivo",
+                        "estoy infectado",
+                        "debería hacerme una PCR",
+                        "algún miembro ha dado positivo para covid",
+                        "algún miembro ha dado positivo",
+                        "algún miembro ha dado positivo a la PCR",
+                        "estoy en riesgo por covid",
+                        "estoy en riesgo por coronavirus"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "NewsIntent",
+                    "slots": [],
+                    "samples": [
+                        "qué noticias hay",
+                        "dime las noticias",
+                        "últimas noticias de minsait",
+                        "las últimas noticias de la empresa",
+                        "cuáles son las últimas noticias",
+                        "dime las últimas noticias"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AssignedTasksIntent",
+                    "slots": [],
+                    "samples": [
+                        "dime mis tareas",
+                        "qué tareas tengo asignadas",
+                        "cuáles son mis tareas asignadas",
+                        "cuáles son mis tareas"
+                    ]
+                },
+                {
+                    "name": "ChangeTaskStateIntent",
+                    "slots": [
+                        {
+                            "name": "taskTitle",
+                            "type": "AMAZON.Person"
+                        },
+                        {
+                            "name": "taskState",
+                            "type": "AMAZON.Person"
+                        },
+                        {
+                            "name": "dateIn",
+                            "type": "AMAZON.DATE"
+                        }
+                    ],
+                    "samples": [
+                        "pasa la tarea {taskTitle} a estado {taskState}",
+                        "cambia el estado de la tarea {taskTitle} a estado {taskState}",
+                        "cambia el estado de la tarea del día {dateIn} a {taskState}",
+                        "cambia la tarea {taskTitle} a estado {taskState}",
+                        "cambia el estado de la tarea {taskTitle} a {taskState}",
+                        "quiero cambiar la tarea {taskTitle} a estado {taskState}",
+                        "quiero cambiar el estado de la tarea {taskTitle} a {taskState}",
+                        "quiero cambiar el estado de la tarea del día {dateIn} a {taskState}",
+                        "quiero pasar la tarea del día {dateIn} a estado {taskState}",
+                        "quiero cambiar el estado de la tarea del día {dateIn} a estado {taskState}",
+                        "quiero pasar la tarea {taskTitle} a estado {taskState}",
+                        "quiero cambiar el estado de la tarea {taskTitle} a estado {taskState}",
+                        "quiero cambiar el estado de la tarea"
+                    ]
+                },
+                {
+                    "name": "ChangeTaskAssignedIntent",
+                    "slots": [
+                        {
+                            "name": "dateIn",
+                            "type": "AMAZON.DATE"
+                        },
+                        {
+                            "name": "taskAssigned",
+                            "type": "AMAZON.Person"
+                        },
+                        {
+                            "name": "taskTitle",
+                            "type": "AMAZON.Person"
+                        }
+                    ],
+                    "samples": [
+                        "quiero cambiar la asignación de la tarea del día {dateIn} a {taskAssigned}",
+                        "quiero cambiar la asignación de la tarea {taskTitle} a {taskAssigned}",
+                        "quiero asignar la tarea {taskTitle} a {taskAssigned}",
+                        "asigna la tarea {taskTitle} a {taskAssigned}",
+                        "asigna la tarea del día {dateIn} a {taskAssigned}",
+                        "quiero asignar la tarea del día {dateIn} a {taskAssigned}"
+                    ]
+                },
+                {
+                    "name": "TaskVariableIntent",
+                    "slots": [
+                        {
+                            "name": "dateIn",
+                            "type": "AMAZON.DATE"
+                        },
+                        {
+                            "name": "varIn",
+                            "type": "AMAZON.Person"
+                        }
+                    ],
+                    "samples": [
+                        "a {varIn}",
+                        "asígnasela a {varIn}",
+                        "para el día {dateIn}",
+                        "el día {dateIn}",
+                        "el título es {varIn}"
+                    ]
+                },
+                {
+                    "name": "CreateTaskIntent",
+                    "slots": [],
+                    "samples": [
+                        "crea una tarea",
+                        "me gustaría crear una tarea",
+                        "quiero crear una tarea"
+                    ]
+                },
+                {
+                    "name": "TicketIntent",
+                    "slots": [],
+                    "samples": [
+                        "cuáles son los últimos tickets",
+                        "cuáles son los últimos tickets nuevos",
+                        "cuántos ticket nuevos hay",
+                        "cúantos tickets hay nuevos",
+                        "cuáles son los nuevos tickets",
+                        "qué tickets hay hoy",
+                        "qué tickets hay"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}

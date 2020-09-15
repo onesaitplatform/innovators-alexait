@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "https://lab.onesaitplatform.com/web/demo-innovators/static/css/main.a1237d7c.chunk.css",
+    "main.js": "https://lab.onesaitplatform.com/web/demo-innovators/static/js/main.030b2f74.chunk.js",
+    "main.js.map": "https://lab.onesaitplatform.com/web/demo-innovators/static/js/main.030b2f74.chunk.js.map",
+    "runtime-main.js": "https://lab.onesaitplatform.com/web/demo-innovators/static/js/runtime-main.d2dc2524.js",
+    "runtime-main.js.map": "https://lab.onesaitplatform.com/web/demo-innovators/static/js/runtime-main.d2dc2524.js.map",
+    "static/css/2.b868077f.chunk.css": "https://lab.onesaitplatform.com/web/demo-innovators/static/css/2.b868077f.chunk.css",
+    "static/js/2.bc9b32f6.chunk.js": "https://lab.onesaitplatform.com/web/demo-innovators/static/js/2.bc9b32f6.chunk.js",
+    "static/js/2.bc9b32f6.chunk.js.map": "https://lab.onesaitplatform.com/web/demo-innovators/static/js/2.bc9b32f6.chunk.js.map",
+    "index.html": "https://lab.onesaitplatform.com/web/demo-innovators/index.html",
+    "precache-manifest.c744fb050459220e12d1124679e26c37.js": "https://lab.onesaitplatform.com/web/demo-innovators/precache-manifest.c744fb050459220e12d1124679e26c37.js",
+    "service-worker.js": "https://lab.onesaitplatform.com/web/demo-innovators/service-worker.js",
+    "static/css/2.b868077f.chunk.css.map": "https://lab.onesaitplatform.com/web/demo-innovators/static/css/2.b868077f.chunk.css.map",
+    "static/css/main.a1237d7c.chunk.css.map": "https://lab.onesaitplatform.com/web/demo-innovators/static/css/main.a1237d7c.chunk.css.map",
+    "static/js/2.bc9b32f6.chunk.js.LICENSE.txt": "https://lab.onesaitplatform.com/web/demo-innovators/static/js/2.bc9b32f6.chunk.js.LICENSE.txt",
+    "static/media/components.css": "https://lab.onesaitplatform.com/web/demo-innovators/static/media/SohoGothicPro-Regular.ee1fea28.woff",
+    "static/media/semantic.min.css": "https://lab.onesaitplatform.com/web/demo-innovators/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d2dc2524.js",
+    "static/css/2.b868077f.chunk.css",
+    "static/js/2.bc9b32f6.chunk.js",
+    "static/css/main.a1237d7c.chunk.css",
+    "static/js/main.030b2f74.chunk.js"
+  ]
+}
