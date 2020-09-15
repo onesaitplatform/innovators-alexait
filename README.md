@@ -42,34 +42,34 @@ Han sido definidos y mapeados un total de 21 intents para esta Skill. El modelo 
 
 En la parte de código de Java, se desarrolla la funcionalidad que manejará uno o varios <em>Intents</em>. Contamos con un total de 14 <em>Intent Handlers</em>:
 
-* CurrentUserInterceptor: lógica que se ejecuta al inicio de cada sesión, para identificar unívocamente al usuario y su dispositivo.
-* LaunchRequestHandler: lógica de inicio de la Skill.
-* HelpIntentHandler: ofrecer diálogo de ayuda al usuario.
-* FallbackIntentHandler: lógica de <em>fallback</em>, si Alexa no entiende la orden.
-* CancelandStopIntentHandler: lógica para detener la ejecución de la Skill.
-* MeetingsIntentHandler: lógica de próximas reuniones.
-* NextMeetingIntentHandler: lógica de próxima reunión.
-* CancelMeetingIntentHandler: lógica para cancelar reuniones.
-* NewsIntentHandler: lógica para mostrar noticias.
-* TaskIntentHandler: lógica de listado de tareas de usuario.
-* ChangeTaskStateIntentHandler: lógica para cambiar de estado una tarea de un usuario.
-* CreateTaskIntentHandler: lógica para crear una tarea en el equipo.
-* FreshdeskIntentHandler: lógica integración directa con buzón de soporte(ticketing) del equipo: conteo y listado de tickets.
-* PCRIntentHandler: lógica que procesa si un usuario ha estado en contacto con algún positivo.
+* <em>CurrentUserInterceptor</em>: lógica que se ejecuta al inicio de cada sesión, para identificar unívocamente al usuario y su dispositivo.
+* <em>LaunchRequestHandler</em>: lógica de inicio de la Skill.
+* <em>HelpIntentHandler</em>: ofrecer diálogo de ayuda al usuario.
+* <em>FallbackIntentHandler</em>: lógica de <em>fallback</em>, si Alexa no entiende la orden.
+* <em>CancelandStopIntentHandler</em>: lógica para detener la ejecución de la Skill.
+* <em>MeetingsIntentHandler</em>: lógica de próximas reuniones.
+* <em>NextMeetingIntentHandler</em>: lógica de próxima reunión.
+* <em>CancelMeetingIntentHandler</em>: lógica para cancelar reuniones.
+* <em>NewsIntentHandler</em>: lógica para mostrar noticias.
+* <em>TaskIntentHandler</em>: lógica de listado de tareas de usuario.
+* <em>ChangeTaskStateIntentHandler</em>: lógica para cambiar de estado una tarea de un usuario.
+* <em>CreateTaskIntentHandler</em>: lógica para crear una tarea en el equipo.
+* <em>FreshdeskIntentHandler</em>: lógica integración directa con buzón de soporte(ticketing) del equipo: conteo y listado de tickets.
+* <em>PCRIntentHandler</em>: lógica que procesa si un usuario ha estado en contacto con algún positivo.
 
 
 Todos estos <em>handlers</em> hacen uso de servicios Java que se comunican con la plataforma, a través de APIs REST.
 
-* DeviceManagementService: registro (primer uso) y gestión de usuario de dispositivo Alexa.
-* FreshdeskService: gestión del buzón de soporte. Integración directa (no onesait platform)
-* MeetingsService: gestión de reuniones.
-* NewsService: gestión de notiicas.
-* PCRService: gestión de positivos PCR.
-* TaskService: gestión de tareas.
+* <em>DeviceManagementService</em>: registro (primer uso) y gestión de usuario de dispositivo Alexa.
+* <em>FreshdeskService</em>: gestión del buzón de soporte. Integración directa (no onesait platform)
+* <em>MeetingsService</em>: gestión de reuniones.
+* <em>NewsService</em>: gestión de notiicas.
+* <em>PCRService</em>: gestión de positivos PCR.
+* <em>TaskService</em>: gestión de tareas.
 
 ## Despliegue de la Skill en Amazon Lambda
 
-El código Java es empaquetado y desplegado desde la consola de Amazon Lambda. Desde ahí se disponibiliza a Alexa a través de un ID único: amzn1.ask.skill.3c28c8f1-8d4d-43fb-b504-883cecd82304
+El código Java es empaquetado y desplegado desde la consola de Amazon Lambda. Desde ahí se disponibiliza a Alexa a través de un ID único: <em>amzn1.ask.skill.3c28c8f1-8d4d-43fb-b504-883cecd82304</em>
 
 ![Amazon Lambda](images/lambda.png)
 
@@ -83,10 +83,10 @@ Se ha hecho el desarrollo en el entorno público y gratuito https://lab.onesaitp
 
 Para la persistencia se han utilizado las ontologías siguientes:
 
-* AlexaDevice: usuarios y dispositivos.
-* CompanyNews: últimas noticias de la empresa.
-* Meetings: reuniones.
-* TeamTasks: tareas de los usuarios (dentro de un equipo de trabajo).
+* <em>AlexaDevice</em>: usuarios y dispositivos.
+* <em>CompanyNews</em>: últimas noticias de la empresa.
+* <em>Meetings</em>: reuniones.
+* <em>TeamTasks</em>: tareas de los usuarios (dentro de un equipo de trabajo).
 
 Cada una de estas ontologías contiene los campos necesarios para trabajar en código.
 
